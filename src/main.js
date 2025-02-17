@@ -30,11 +30,14 @@ document.querySelector('.form').addEventListener('submit', event => {
   box.innerHTML =
     '<p>Wait, the image is loaded</p><span class="loader"></span>';
 
-  getImage(input)
-    .then(() => {
-      document.querySelector('.user-input').value = '';
-    })
-    .catch(error => {
-      console.error(error);
-    });
+getImage(input)
+  .then(() => {
+    document.querySelector('.user-input').value = '';
+    document.querySelector('.user-input').focus();
+  })
+  .catch(error => {
+    console.error(error);
+    document.querySelector('.user-input').value = '';
+    document.querySelector('.user-input').focus();
+  });
 });

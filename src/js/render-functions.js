@@ -16,6 +16,12 @@ export function markup(data) {
         'Sorry, there are no images matching your search query. Please, try again!',
     });
     box.innerHTML = '';
+
+    if (lightbox) {
+      lightbox.destroy();
+      lightbox = null;
+    }
+
     return;
   }
 
@@ -42,7 +48,7 @@ export function markup(data) {
 
   box.innerHTML = markup;
 
-  if (!lightbox) {
+  if (!lightbox && document.querySelector('.gallery a')) {
     lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
       captionDelay: 250,
